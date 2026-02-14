@@ -57,7 +57,7 @@
             <!-- Logo de la Institución -->
             <div class="flex-shrink-0">
                 <div class="w-24 h-24 bg-brand-blue rounded-full flex items-center justify-center text-white shadow-lg overflow-hidden border-2 border-brand-green">
-                    <!-- Reemplazar 'src' con la URL real del logo cuando esté disponible -->
+                    <!-- INSTRUCCIÓN: Reemplaza el src con la URL de tu logo real -->
                     <img src="logo.jpeg" alt="Logo Institucional" onerror="this.src='https://ui-avatars.com/api/?name=IE+Normal&background=377EC1&color=fff'" class="w-full h-full object-cover">
                 </div>
             </div>
@@ -100,6 +100,18 @@
                         <div class="col-span-2">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Nombre y Apellidos *</label>
                             <input type="text" name="nombre" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition" placeholder="Ej: Juan Pérez Rodríguez">
+                        </div>
+
+                        <!-- Número de Identificación -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Número de Identificación *</label>
+                            <input type="text" name="identificacion" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition" placeholder="C.C. o T.I.">
+                        </div>
+
+                        <!-- Número de Teléfono -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Número de Teléfono / Celular *</label>
+                            <input type="tel" name="telefono" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition" placeholder="Ej: 300 123 4567">
                         </div>
 
                         <!-- Correo Electrónico -->
@@ -362,7 +374,7 @@
 
     <!-- Modal de Éxito -->
     <div id="successModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center z-50">
-        <div class="bg-white rounded-lg shadow-2xl p-8 max-w-sm text-center transform transition-all scale-100 border-t-4 border-brand-green">
+        <div class="bg-white rounded-lg shadow-2xl p-8 max-sm:mx-4 text-center transform transition-all scale-100 border-t-4 border-brand-green">
             <div class="w-16 h-16 bg-green-100 text-brand-green rounded-full flex items-center justify-center mx-auto mb-4">
                 <i class="fas fa-check text-3xl"></i>
             </div>
@@ -453,4 +465,3 @@
     </script>
 </body>
 </html>
-
