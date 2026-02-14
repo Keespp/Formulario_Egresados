@@ -27,7 +27,7 @@
             transform: translateY(0);
         }
         .section-header {
-            border-bottom: 2px solid #10b981; /* Verde Emerald */
+            border-bottom: 2px solid #0E8737; /* Verde Institucional */
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
         }
@@ -38,12 +38,10 @@
                 extend: {
                     colors: {
                         brand: {
-                            50: '#ecfdf5',
-                            100: '#d1fae5',
-                            500: '#10b981',
-                            600: '#059669',
-                            700: '#047857',
-                            900: '#064e3b',
+                            blue: '#377EC1',
+                            green: '#0E8737',
+                            'blue-dark': '#2a6296',
+                            'green-dark': '#0b6b2c',
                         }
                     }
                 }
@@ -53,13 +51,22 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Encabezado -->
-    <header class="bg-brand-700 text-white shadow-lg">
-        <div class="container mx-auto px-4 py-6 text-center">
-            <div class="flex flex-col items-center justify-center">
-                <i class="fas fa-university text-4xl mb-3 text-brand-100"></i>
-                <h1 class="text-2xl md:text-3xl font-bold uppercase tracking-wide">Institución Educativa Normal Superior</h1>
-                <p class="mt-2 text-brand-100 font-light">Sistema de Información y Seguimiento a Egresados</p>
+    <!-- Encabezado con Logo y Colores Institucionales -->
+    <header class="bg-white border-b-4 border-brand-green shadow-md">
+        <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-center gap-6">
+            <!-- Logo de la Institución -->
+            <div class="flex-shrink-0">
+                <div class="w-24 h-24 bg-brand-blue rounded-full flex items-center justify-center text-white shadow-lg overflow-hidden border-2 border-brand-green">
+                    <!-- Reemplazar 'src' con la URL real del logo cuando esté disponible -->
+                    <img src="https://via.placeholder.com/100?text=LOGO" alt="Logo Institucional" onerror="this.src='https://ui-avatars.com/api/?name=IE+Normal&background=377EC1&color=fff'" class="w-full h-full object-cover">
+                </div>
+            </div>
+            
+            <div class="text-center md:text-left">
+                <h1 class="text-2xl md:text-3xl font-extrabold uppercase tracking-tight text-brand-blue">
+                    Institución Educativa <span class="text-brand-green">Normal Superior</span>
+                </h1>
+                <p class="mt-1 text-gray-600 font-medium italic">Sistema de Información y Seguimiento a Egresados</p>
             </div>
         </div>
     </header>
@@ -69,18 +76,21 @@
         
         <form id="egresadosForm" class="bg-white rounded-xl shadow-xl overflow-hidden" onsubmit="handleSubmit(event)">
             
-            <!-- Barra superior decorativa del formulario -->
-            <div class="h-2 bg-gradient-to-r from-brand-500 to-brand-900"></div>
+            <!-- Barra superior decorativa del formulario con los dos colores -->
+            <div class="h-2 flex">
+                <div class="w-1/2 bg-brand-blue"></div>
+                <div class="w-1/2 bg-brand-green"></div>
+            </div>
 
             <div class="p-6 md:p-10 space-y-8">
                 
-                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded text-sm text-blue-700 mb-6">
-                    <p><i class="fas fa-info-circle mr-2"></i> Por favor, complete la información solicitada para ayudarnos a mejorar nuestros procesos institucionales y mantener el contacto con nuestra comunidad.</p>
+                <div class="bg-blue-50 border-l-4 border-brand-blue p-4 rounded text-sm text-blue-700 mb-6">
+                    <p><i class="fas fa-info-circle mr-2 text-brand-blue"></i> Por favor, complete la información solicitada para ayudarnos a mejorar nuestros procesos institucionales y mantener el contacto con nuestra comunidad de egresados.</p>
                 </div>
 
                 <!-- SECCIÓN 1: DATOS PERSONALES -->
                 <section>
-                    <div class="section-header flex items-center text-brand-700">
+                    <div class="section-header flex items-center text-brand-blue">
                         <i class="fas fa-user-circle text-xl mr-3"></i>
                         <h2 class="text-xl font-bold">Información Personal</h2>
                     </div>
@@ -89,25 +99,25 @@
                         <!-- Nombre Completo -->
                         <div class="col-span-2">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Nombre y Apellidos *</label>
-                            <input type="text" name="nombre" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="Ej: Juan Pérez Rodríguez">
+                            <input type="text" name="nombre" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition" placeholder="Ej: Juan Pérez Rodríguez">
                         </div>
 
                         <!-- Correo Electrónico -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico *</label>
-                            <input type="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="Ej: juan.perez@correo.com">
+                            <input type="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition" placeholder="Ej: juan.perez@correo.com">
                         </div>
 
                         <!-- Municipio Residencia -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Municipio de Residencia *</label>
-                            <input type="text" name="municipio" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="Ej: Bogotá D.C., Colombia">
+                            <input type="text" name="municipio" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition" placeholder="Ej: Bogotá D.C., Colombia">
                         </div>
 
                         <!-- Estrato Actual -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Estrato Social Actual *</label>
-                            <select name="estrato_actual" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition bg-white">
+                            <select name="estrato_actual" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition bg-white">
                                 <option value="" disabled selected>Seleccione...</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -121,7 +131,7 @@
                         <!-- Estrato Ingreso -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Estrato al ingresar al colegio</label>
-                            <select name="estrato_ingreso" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition bg-white">
+                            <select name="estrato_ingreso" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition bg-white">
                                 <option value="" disabled selected>Seleccione...</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -136,7 +146,7 @@
 
                 <!-- SECCIÓN 2: INFORMACIÓN ACADÉMICA -->
                 <section>
-                    <div class="section-header flex items-center text-brand-700">
+                    <div class="section-header flex items-center text-brand-green">
                         <i class="fas fa-graduation-cap text-xl mr-3"></i>
                         <h2 class="text-xl font-bold">Información Académica (Institucional)</h2>
                     </div>
@@ -145,13 +155,13 @@
                         <!-- Año Graduación -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Año de Promoción / Graduación *</label>
-                            <input type="number" min="1950" max="2030" name="anio_grado" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="Ej: 2018">
+                            <input type="number" min="1950" max="2030" name="anio_grado" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green focus:border-brand-green outline-none transition" placeholder="Ej: 2018">
                         </div>
 
                         <!-- Programa -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Programa del cual es egresado *</label>
-                            <select name="programa" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition bg-white">
+                            <select name="programa" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green focus:border-brand-green outline-none transition bg-white">
                                 <option value="" disabled selected>Seleccione...</option>
                                 <option value="Grado 11">Grado 11 (Bachiller)</option>
                                 <option value="Ciclo Complementario">Ciclo Complementario (Normalista)</option>
@@ -163,7 +173,7 @@
 
                 <!-- SECCIÓN 3: SITUACIÓN LABORAL -->
                 <section>
-                    <div class="section-header flex items-center text-brand-700">
+                    <div class="section-header flex items-center text-brand-blue">
                         <i class="fas fa-briefcase text-xl mr-3"></i>
                         <h2 class="text-xl font-bold">Situación Laboral</h2>
                     </div>
@@ -173,11 +183,11 @@
                         <label class="block text-sm font-medium text-gray-700 mb-2">¿Actualmente se encuentra trabajando? *</label>
                         <div class="flex space-x-6">
                             <label class="inline-flex items-center cursor-pointer">
-                                <input type="radio" name="trabaja" value="si" onclick="toggleWorkSection(true)" class="form-radio text-brand-600 focus:ring-brand-500 h-4 w-4">
+                                <input type="radio" name="trabaja" value="si" onclick="toggleWorkSection(true)" class="form-radio text-brand-blue focus:ring-brand-blue h-4 w-4">
                                 <span class="ml-2">Sí</span>
                             </label>
                             <label class="inline-flex items-center cursor-pointer">
-                                <input type="radio" name="trabaja" value="no" onclick="toggleWorkSection(false)" class="form-radio text-brand-600 focus:ring-brand-500 h-4 w-4" checked>
+                                <input type="radio" name="trabaja" value="no" onclick="toggleWorkSection(false)" class="form-radio text-brand-blue focus:ring-brand-blue h-4 w-4" checked>
                                 <span class="ml-2">No</span>
                             </label>
                         </div>
@@ -188,22 +198,22 @@
                         
                         <div class="col-span-2 md:col-span-1">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Nombre de la Empresa o Institución *</label>
-                            <input type="text" id="empresa" name="empresa" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="Ej: Ministerio de Educación">
+                            <input type="text" id="empresa" name="empresa" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition" placeholder="Ej: Ministerio de Educación">
                         </div>
 
                         <div class="col-span-2 md:col-span-1">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Cargo o Función *</label>
-                            <input type="text" id="cargo" name="cargo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="Ej: Docente de Primaria">
+                            <input type="text" id="cargo" name="cargo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition" placeholder="Ej: Docente de Primaria">
                         </div>
 
                         <div class="col-span-2 md:col-span-1">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Ciudad o Municipio de Trabajo *</label>
-                            <input type="text" id="ciudad_trabajo" name="ciudad_trabajo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="Ej: Medellín, Antioquia">
+                            <input type="text" id="ciudad_trabajo" name="ciudad_trabajo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition" placeholder="Ej: Medellín, Antioquia">
                         </div>
 
                         <div class="col-span-2 md:col-span-1">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Sector *</label>
-                            <select id="sector" name="sector" onchange="toggleOtherField(this, 'otro_sector_text')" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition bg-white">
+                            <select id="sector" name="sector" onchange="toggleOtherField(this, 'otro_sector_text')" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition bg-white">
                                 <option value="" disabled selected>Seleccione...</option>
                                 <option value="Academico-Educativo">Académico / Educativo</option>
                                 <option value="Empresarial-Comercial">Empresarial / Comercial</option>
@@ -212,13 +222,13 @@
                                 <option value="Publico-Estatal">Público / Estatal</option>
                                 <option value="Otro">Otro (Especifique)</option>
                             </select>
-                            <input type="text" id="otro_sector_text" name="otro_sector_text" class="hidden mt-2 w-full px-4 py-2 border border-brand-300 bg-brand-50 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none transition" placeholder="Especifique cuál sector">
+                            <input type="text" id="otro_sector_text" name="otro_sector_text" class="hidden mt-2 w-full px-4 py-2 border border-brand-blue bg-blue-50 rounded-lg focus:ring-2 focus:ring-brand-blue outline-none transition" placeholder="Especifique cuál sector">
                         </div>
 
                         <!-- Tipo Vinculación con lógica 'Otro' -->
                         <div class="col-span-2">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Tipo de Vinculación *</label>
-                            <select id="vinculacion" name="vinculacion" onchange="toggleOtherField(this, 'otra_vinculacion_text')" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition bg-white mb-2">
+                            <select id="vinculacion" name="vinculacion" onchange="toggleOtherField(this, 'otra_vinculacion_text')" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition bg-white mb-2">
                                 <option value="" disabled selected>Seleccione...</option>
                                 <option value="Planta">Planta</option>
                                 <option value="Contrato Indefinido">Contrato Indefinido</option>
@@ -226,12 +236,12 @@
                                 <option value="Independiente">Independiente / Prestación de Servicios</option>
                                 <option value="Otro">Otro (Especifique)</option>
                             </select>
-                            <input type="text" id="otra_vinculacion_text" name="otra_vinculacion_text" class="hidden w-full px-4 py-2 border border-brand-300 bg-brand-50 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none transition" placeholder="Especifique su tipo de vinculación">
+                            <input type="text" id="otra_vinculacion_text" name="otra_vinculacion_text" class="hidden w-full px-4 py-2 border border-brand-blue bg-blue-50 rounded-lg focus:ring-2 focus:ring-brand-blue outline-none transition" placeholder="Especifique su tipo de vinculación">
                         </div>
 
                         <div class="col-span-2">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Rango Salarial Aproximado *</label>
-                            <select id="salario" name="salario" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition bg-white">
+                            <select id="salario" name="salario" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition bg-white">
                                 <option value="" disabled selected>Seleccione...</option>
                                 <option value="Menos de 1 millon">Menos de 1 millón (SMMLV)</option>
                                 <option value="1 a 2 millones">Entre 1 millón y 2 millones</option>
@@ -245,7 +255,7 @@
 
                 <!-- SECCIÓN 4: ESTUDIOS DE POSGRADO -->
                 <section>
-                    <div class="section-header flex items-center text-brand-700">
+                    <div class="section-header flex items-center text-brand-green">
                         <i class="fas fa-book-reader text-xl mr-3"></i>
                         <h2 class="text-xl font-bold">Formación Superior / Posgradual</h2>
                     </div>
@@ -254,11 +264,11 @@
                         <label class="block text-sm font-medium text-gray-700 mb-2">¿Ha realizado o se encuentra realizando estudios de posgrado? *</label>
                         <div class="flex space-x-6">
                             <label class="inline-flex items-center cursor-pointer">
-                                <input type="radio" name="posgrado" value="si" onclick="toggleStudySection(true)" class="form-radio text-brand-600 focus:ring-brand-500 h-4 w-4">
+                                <input type="radio" name="posgrado" value="si" onclick="toggleStudySection(true)" class="form-radio text-brand-green focus:ring-brand-green h-4 w-4">
                                 <span class="ml-2">Sí</span>
                             </label>
                             <label class="inline-flex items-center cursor-pointer">
-                                <input type="radio" name="posgrado" value="no" onclick="toggleStudySection(false)" class="form-radio text-brand-600 focus:ring-brand-500 h-4 w-4" checked>
+                                <input type="radio" name="posgrado" value="no" onclick="toggleStudySection(false)" class="form-radio text-brand-green focus:ring-brand-green h-4 w-4" checked>
                                 <span class="ml-2">No</span>
                             </label>
                         </div>
@@ -268,36 +278,36 @@
                     <div id="studySection" class="hidden p-5 bg-gray-50 rounded-lg border border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-6 transition-all duration-300">
                         <div class="col-span-2 md:col-span-1">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Tipo de Programa *</label>
-                            <select id="tipo_programa" name="tipo_programa" onchange="toggleOtherField(this, 'otro_tipo_programa_text')" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition bg-white">
+                            <select id="tipo_programa" name="tipo_programa" onchange="toggleOtherField(this, 'otro_tipo_programa_text')" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green focus:border-brand-green outline-none transition bg-white">
                                 <option value="" disabled selected>Seleccione...</option>
                                 <option value="Especializacion">Especialización</option>
                                 <option value="Maestria">Maestría</option>
                                 <option value="Doctorado">Doctorado</option>
                                 <option value="Otro">Otro (Especifique)</option>
                             </select>
-                            <input type="text" id="otro_tipo_programa_text" name="otro_tipo_programa_text" class="hidden mt-2 w-full px-4 py-2 border border-brand-300 bg-brand-50 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none transition" placeholder="Especifique el tipo de programa">
+                            <input type="text" id="otro_tipo_programa_text" name="otro_tipo_programa_text" class="hidden mt-2 w-full px-4 py-2 border border-brand-green bg-green-50 rounded-lg focus:ring-2 focus:ring-brand-green outline-none transition" placeholder="Especifique el tipo de programa">
                         </div>
 
                         <div class="col-span-2 md:col-span-1">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Nombre del Programa *</label>
-                            <input type="text" id="nombre_programa" name="nombre_programa" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="Ej: Gerencia Educativa">
+                            <input type="text" id="nombre_programa" name="nombre_programa" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green focus:border-brand-green outline-none transition" placeholder="Ej: Gerencia Educativa">
                         </div>
 
                         <div class="col-span-2">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Universidad o Institución *</label>
-                            <input type="text" id="universidad" name="universidad" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="Ej: Universidad Pedagógica Nacional">
+                            <input type="text" id="universidad" name="universidad" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green focus:border-brand-green outline-none transition" placeholder="Ej: Universidad Pedagógica Nacional">
                         </div>
 
                         <div class="col-span-2">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Ciudad y País *</label>
-                            <input type="text" id="lugar_estudio" name="lugar_estudio" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="Ej: Barcelona, España">
+                            <input type="text" id="lugar_estudio" name="lugar_estudio" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green focus:border-brand-green outline-none transition" placeholder="Ej: Barcelona, España">
                         </div>
                     </div>
                 </section>
 
                 <!-- SECCIÓN 5: RETROALIMENTACIÓN -->
                 <section>
-                    <div class="section-header flex items-center text-brand-700">
+                    <div class="section-header flex items-center text-brand-blue">
                         <i class="fas fa-comments text-xl mr-3"></i>
                         <h2 class="text-xl font-bold">Retroalimentación Institucional</h2>
                     </div>
@@ -305,7 +315,7 @@
                     <div class="space-y-6">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">¿Considera que la formación recibida en la institución fue adecuada para su desempeño profesional? *</label>
-                            <select name="formacion_adecuada" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition bg-white">
+                            <select name="formacion_adecuada" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition bg-white">
                                 <option value="" disabled selected>Seleccione...</option>
                                 <option value="Si">Sí</option>
                                 <option value="Parcialmente">Parcialmente</option>
@@ -317,11 +327,11 @@
                             <label class="block text-sm font-medium text-gray-700 mb-2">¿Le gustaría participar en actividades, proyectos o convocatorias de egresados? *</label>
                             <div class="flex space-x-6">
                                 <label class="inline-flex items-center cursor-pointer">
-                                    <input type="radio" name="participar" value="si" required class="form-radio text-brand-600 focus:ring-brand-500 h-4 w-4">
+                                    <input type="radio" name="participar" value="si" required class="form-radio text-brand-green focus:ring-brand-green h-4 w-4">
                                     <span class="ml-2">Sí</span>
                                 </label>
                                 <label class="inline-flex items-center cursor-pointer">
-                                    <input type="radio" name="participar" value="no" class="form-radio text-brand-600 focus:ring-brand-500 h-4 w-4">
+                                    <input type="radio" name="participar" value="no" class="form-radio text-brand-green focus:ring-brand-green h-4 w-4">
                                     <span class="ml-2">No</span>
                                 </label>
                             </div>
@@ -329,14 +339,14 @@
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Comentarios o sugerencias para fortalecer la relación con los egresados</label>
-                            <textarea name="comentarios" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="Escriba sus sugerencias aquí..."></textarea>
+                            <textarea name="comentarios" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green focus:border-brand-green outline-none transition" placeholder="Escriba sus sugerencias aquí..."></textarea>
                         </div>
                     </div>
                 </section>
 
                 <!-- Botón Enviar -->
                 <div class="pt-6 border-t border-gray-200">
-                    <button type="submit" class="w-full md:w-auto bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300 flex items-center justify-center mx-auto">
+                    <button type="submit" class="w-full md:w-auto bg-brand-blue hover:bg-brand-blue-dark text-white font-bold py-3 px-12 rounded-lg shadow-md transition duration-300 flex items-center justify-center mx-auto">
                         <i class="fas fa-paper-plane mr-2"></i> Enviar Información
                     </button>
                 </div>
@@ -350,15 +360,15 @@
 
     </main>
 
-    <!-- Modal de Éxito (Oculto por defecto) -->
+    <!-- Modal de Éxito -->
     <div id="successModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center z-50">
-        <div class="bg-white rounded-lg shadow-2xl p-8 max-w-sm text-center transform transition-all scale-100">
-            <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+        <div class="bg-white rounded-lg shadow-2xl p-8 max-w-sm text-center transform transition-all scale-100 border-t-4 border-brand-green">
+            <div class="w-16 h-16 bg-green-100 text-brand-green rounded-full flex items-center justify-center mx-auto mb-4">
                 <i class="fas fa-check text-3xl"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-2">¡Gracias!</h3>
-            <p class="text-gray-600 mb-6">La información ha sido registrada exitosamente.</p>
-            <button onclick="closeModal()" class="bg-brand-600 hover:bg-brand-700 text-white font-bold py-2 px-6 rounded-lg transition duration-200">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">¡Registro Exitoso!</h3>
+            <p class="text-gray-600 mb-6">Gracias por ser parte de nuestra red de egresados.</p>
+            <button onclick="closeModal()" class="bg-brand-blue hover:bg-brand-blue-dark text-white font-bold py-2 px-8 rounded-lg transition duration-200">
                 Aceptar
             </button>
         </div>
@@ -366,7 +376,6 @@
 
     <!-- Scripts de Lógica -->
     <script>
-        // Lógica para mostrar/ocultar sección Laboral
         function toggleWorkSection(show) {
             const section = document.getElementById('workSection');
             const inputs = section.querySelectorAll('input, select');
@@ -374,7 +383,6 @@
             if (show) {
                 section.classList.remove('hidden');
                 section.classList.add('fade-enter-active');
-                // Hacer requeridos los campos excepto los condicionales de "otro"
                 inputs.forEach(input => {
                     if(!input.id.includes('otro')) {
                         input.required = true;
@@ -383,12 +391,10 @@
             } else {
                 section.classList.add('hidden');
                 section.classList.remove('fade-enter-active');
-                // Quitar requeridos
                 inputs.forEach(input => input.required = false);
             }
         }
 
-        // Lógica genérica para campos "Otro"
         function toggleOtherField(selectElement, inputId) {
             const input = document.getElementById(inputId);
             if (selectElement.value === 'Otro') {
@@ -398,11 +404,10 @@
             } else {
                 input.classList.add('hidden');
                 input.required = false;
-                input.value = ''; // Limpiar si se oculta
+                input.value = '';
             }
         }
 
-        // Lógica para mostrar/ocultar sección Posgrado
         function toggleStudySection(show) {
             const section = document.getElementById('studySection');
             const inputs = section.querySelectorAll('input, select');
@@ -410,7 +415,6 @@
             if (show) {
                 section.classList.remove('hidden');
                 section.classList.add('fade-enter-active');
-                // Hacer requeridos los campos excepto los condicionales de "otro"
                 inputs.forEach(input => {
                     if(!input.id.includes('otro')) {
                         input.required = true;
@@ -423,15 +427,11 @@
             }
         }
 
-        // Simulación de envío
         function handleSubmit(e) {
             e.preventDefault();
-            // Aquí iría la lógica para enviar a backend o Google Sheets
-            
-            // Simular carga y mostrar modal
             const btn = e.target.querySelector('button[type="submit"]');
             const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Enviando...';
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Procesando...';
             btn.disabled = true;
 
             setTimeout(() => {
@@ -440,11 +440,10 @@
                 btn.innerHTML = originalText;
                 btn.disabled = false;
                 e.target.reset();
-                // Resetear secciones ocultas
                 toggleWorkSection(false);
                 toggleStudySection(false);
-                window.scrollTo(0,0);
-            }, 1500);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 1200);
         }
 
         function closeModal() {
