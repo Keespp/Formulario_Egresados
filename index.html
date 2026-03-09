@@ -618,33 +618,86 @@
             }
         }
 
+       // EXPORTAR A EXCEL (Optimizada para campos dinámicos)
         window.exportarExcelDB = function() {
             if (egresadosCache.length === 0) {
                 alert("No hay registros descargados para exportar.");
                 return;
             }
-            // Agregado el mapeo básico de las nuevas columnas estáticas de Información Personal para Excel
-            const datosParaExcel = egresadosCache.map(e => ({
-                "Nombre Completo": e.nombre || '', 
-                "Identificación": e.identificacion || '',
-                "Sexo": e.sexo || '',
-                "Lugar Nacimiento": e.lugar_nacimiento || '',
-                "Fecha Nacimiento": e.fecha_nacimiento || '',
-                "Teléfono": e.telefono || '', 
-                "Email": e.email || '',
-                "Dirección Actual": e.direccion_residencia || '',
-                "Municipio": e.municipio || '', 
-                "Estrato": e.estrato_actual || '', 
-                "Promoción": e.anio_grado || '', 
-                "Programa": e.programa || '',
-                "¿Trabaja?": e.trabaja === 'si' ? 'Sí' : 'No', 
-                "Empresa": e.empresa || 'N/A', 
-                "Cargo": e.cargo || 'N/A', 
-                "¿Estudios Adic?": e.posgrado === 'si' ? 'Sí' : 'No', 
-                "Formación Adecuada": e.formacion_adecuada || '', 
-                "Desea Participar": e.participar === 'si' ? 'Sí' : 'No',
-                "Comentarios": e.comentarios || ''
-            }));
+
+            // 1. Encontrar el número máximo de estudios y aportes que alguien haya registrado
+            let maxEstudios = 1;
+            let maxAportes = 1;
+
+            egresadosCache.forEach(e => {
+                let estudiosUser = 0;
+                while (e[`nombre_programa_${estudiosUser + 1}`] !== undefined) {
+                    estudiosUser++;
+                }
+                if (estudiosUser > maxEstudios) maxEstudios = estudiosUser;
+
+                let aportesUser = 0;
+                // Revisamos si existe el campo de institución o de propuesta para contarlo
+                while (e[`aporte_institucion_${aportesUser + 1}`] !== undefined || e[`aporte_propuesta_${aportesUser + 1}`] !== undefined) {
+                    aportesUser++;
+                }
+                if (aportesUser > maxAportes) maxAportes = aportesUser;
+            });
+
+            // 2. Construir la estructura para el Excel fila por fila
+            const datosParaExcel = egresadosCache.map(e => {
+                // Información Estática (Personal y Laboral)
+                const row = {
+                    "Nombre Completo": e.nombre || '', 
+                    "Identificación": e.identificacion || '',
+                    "Sexo": e.sexo || '',
+                    "Lugar Nacimiento": e.lugar_nacimiento || '',
+                    "Fecha Nacimiento": e.fecha_nacimiento || '',
+                    "Teléfono": e.telefono || '', 
+                    "Email": e.email || '',
+                    "Dirección Actual": e.direccion_residencia || '',
+                    "Municipio": e.municipio || '', 
+                    "Estrato Actual": e.estrato_actual || '', 
+                    "Estrato Ingreso": e.estrato_ingreso || '', 
+                    "Promoción": e.anio_grado || '', 
+                    "Programa Egresado": e.programa || '',
+                    "¿Trabaja?": e.trabaja === 'si' ? 'Sí' : 'No', 
+                    "Sector Laboral": e.sector === 'Otro' ? e.otro_sector_text : (e.sector || ''),
+                    "Empresa/Institución": e.empresa || '', 
+                    "Cargo": e.cargo || '', 
+                    "Ciudad Trabajo": e.ciudad_trabajo || '',
+                    "Tipo Vinculación": e.vinculacion === 'Otro' ? e.otra_vinculacion_text : (e.vinculacion || ''),
+                    "Rango Salarial": e.salario || '',
+                    "¿Hizo Estudios Adicionales?": e.posgrado === 'si' ? 'Sí' : 'No'
+                };
+
+                // Añadir dinámicamente las columnas de los Estudios/Carreras
+                for (let i = 1; i <= maxEstudios; i++) {
+                    let tipo = e[`tipo_programa_${i}`];
+                    if (tipo === 'Otro') tipo = e[`otro_tipo_programa_text_${i}`];
+                    
+                    row[`Tipo Estudio ${i}`] = tipo || '';
+                    row[`Nombre Estudio ${i}`] = e[`nombre_programa_${i}`] || '';
+                    row[`Universidad ${i}`] = e[`universidad_${i}`] || '';
+                    row[`Lugar Estudio ${i}`] = e[`lugar_estudio_${i}`] || '';
+                }
+
+                // Añadir dinámicamente las columnas de Aportes/Experiencias
+                for (let i = 1; i <= maxAportes; i++) {
+                    row[`Año Aporte ${i}`] = e[`aporte_anio_${i}`] || '';
+                    row[`Institución Aporte ${i}`] = e[`aporte_institucion_${i}`] || '';
+                    row[`Propuesta/Aporte ${i}`] = e[`aporte_propuesta_${i}`] || '';
+                }
+
+                // Añadir Retroalimentación al final
+                row["Formación Adecuada"] = e.formacion_adecuada || ''; 
+                row["Desea Participar"] = e.participar === 'si' ? 'Sí' : 'No';
+                row["Comentarios"] = e.comentarios || '';
+
+                return row;
+            });
+
+            // 3. Generar y descargar el archivo
             const worksheet = XLSX.utils.json_to_sheet(datosParaExcel);
             const workbook = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(workbook, worksheet, "Egresados_Nube");
@@ -657,4 +710,5 @@
     </script>
 </body>
 </html>
+
 
