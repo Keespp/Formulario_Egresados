@@ -72,6 +72,27 @@
                                 <input type="text" name="identificacion" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue outline-none transition">
                             </div>
                             <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Sexo *</label>
+                                <select name="sexo" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue bg-white">
+                                    <option value="" disabled selected>Seleccione...</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Lugar de Nacimiento *</label>
+                                <input type="text" name="lugar_nacimiento" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Fecha de Nacimiento *</label>
+                                <input type="date" name="fecha_nacimiento" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue outline-none transition">
+                            </div>
+                            <div class="col-span-2 md:col-span-1">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Dirección de Residencia Actual *</label>
+                                <input type="text" name="direccion_residencia" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue outline-none transition">
+                            </div>
+                            <div class="col-span-2 md:col-span-1">
                                 <label class="block text-sm font-medium text-gray-700 mb-1">Número de Teléfono / Celular *</label>
                                 <input type="tel" name="telefono" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue outline-none transition">
                             </div>
@@ -182,7 +203,7 @@
                             <i class="fas fa-book-reader text-xl mr-3"></i><h2 class="text-xl font-bold">Formación Superior / Posgradual</h2>
                         </div>
                         <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">¿Ha realizado o se encuentra realizando estudios de posgrado? *</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">¿Ha realizado o se encuentra realizando estudios superiores (Pregrado/Posgrado)? *</label>
                             <div class="flex space-x-6">
                                 <label class="inline-flex items-center cursor-pointer">
                                     <input type="radio" name="posgrado" value="si" onclick="toggleStudySection(true)" class="form-radio text-brand-green h-4 w-4">
@@ -194,32 +215,74 @@
                                 </label>
                             </div>
                         </div>
-                        <div id="studySection" class="hidden p-5 bg-gray-50 rounded-lg border border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-6 transition-all duration-300">
-                            <div class="col-span-2 md:col-span-1">
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Tipo de Programa *</label>
-                                <select id="tipo_programa" name="tipo_programa" onchange="toggleOtherField(this, 'otro_tipo_programa_text')" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white">
-                                    <option value="" disabled selected>Seleccione...</option>
-                                    <option value="Especializacion">Especialización</option><option value="Maestria">Maestría</option><option value="Doctorado">Doctorado</option><option value="Otro">Otro (Especifique)</option>
-                                </select>
-                                <input type="text" id="otro_tipo_programa_text" name="otro_tipo_programa_text" class="hidden mt-2 w-full px-4 py-2 border border-brand-green bg-green-50 rounded-lg">
+                        
+                        <div id="studySection" class="hidden p-5 bg-gray-50 rounded-lg border border-gray-200 transition-all duration-300">
+                            <div id="studiesContainer">
+                                <div class="study-item grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 pb-6 border-b border-gray-300">
+                                    <div class="col-span-2 md:col-span-1">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Tipo de Programa *</label>
+                                        <select name="tipo_programa_1" onchange="toggleOtherField(this, 'otro_tipo_programa_text_1')" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white">
+                                            <option value="" disabled selected>Seleccione...</option>
+                                            <option value="Pregrado">Profesional / Pregrado</option>
+                                            <option value="Tecnologia">Tecnología</option>
+                                            <option value="Especializacion">Especialización</option>
+                                            <option value="Maestria">Maestría</option>
+                                            <option value="Doctorado">Doctorado</option>
+                                            <option value="Otro">Otro (Especifique)</option>
+                                        </select>
+                                        <input type="text" id="otro_tipo_programa_text_1" name="otro_tipo_programa_text_1" class="hidden mt-2 w-full px-4 py-2 border border-brand-green bg-green-50 rounded-lg">
+                                    </div>
+                                    <div class="col-span-2 md:col-span-1">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Nombre de la Carrera/Programa *</label>
+                                        <input type="text" name="nombre_programa_1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green">
+                                    </div>
+                                    <div class="col-span-2">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Universidad o Institución *</label>
+                                        <input type="text" name="universidad_1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green">
+                                    </div>
+                                    <div class="col-span-2">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Ciudad y País *</label>
+                                        <input type="text" name="lugar_estudio_1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-span-2 md:col-span-1">
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Nombre del Programa *</label>
-                                <input type="text" id="nombre_programa" name="nombre_programa" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green">
-                            </div>
-                            <div class="col-span-2">
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Universidad o Institución *</label>
-                                <input type="text" id="universidad" name="universidad" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green">
-                            </div>
-                            <div class="col-span-2">
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Ciudad y País *</label>
-                                <input type="text" id="lugar_estudio" name="lugar_estudio" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green">
-                            </div>
+                            <button type="button" onclick="addStudy()" class="text-brand-green hover:text-brand-green-dark font-bold flex items-center mt-2 transition-colors">
+                                <i class="fas fa-plus-circle mr-2"></i> Agregar otra carrera o posgrado
+                            </button>
                         </div>
                     </section>
 
                     <section>
                         <div class="section-header flex items-center text-brand-blue">
+                            <i class="fas fa-chalkboard-teacher text-xl mr-3"></i><h2 class="text-xl font-bold">Experiencia de Aportes Pedagógicos, Institucionales, Regionales, Nacionales</h2>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">Si ha realizado aportes, mencione el año, la institución (o donde labora) y la propuesta pedagógica / aportes generados.</p>
+                        
+                        <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+                            <div id="aportesContainer">
+                                <div class="aporte-item grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 pb-6 border-b border-gray-300">
+                                    <div class="col-span-2 md:col-span-1">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Año</label>
+                                        <input type="number" min="1950" max="2030" name="aporte_anio_1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue">
+                                    </div>
+                                    <div class="col-span-2 md:col-span-1">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Institución / Donde labora</label>
+                                        <input type="text" name="aporte_institucion_1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue">
+                                    </div>
+                                    <div class="col-span-2">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Propuesta Pedagógica / Aportes</label>
+                                        <textarea name="aporte_propuesta_1" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue outline-none transition"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" onclick="addAporte()" class="text-brand-blue hover:text-brand-blue-dark font-bold flex items-center transition-colors">
+                                <i class="fas fa-plus-circle mr-2"></i> Agregar otro aporte / experiencia
+                            </button>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div class="section-header flex items-center text-brand-green">
                             <i class="fas fa-comments text-xl mr-3"></i><h2 class="text-xl font-bold">Retroalimentación Institucional</h2>
                         </div>
                         <div class="space-y-6">
@@ -277,11 +340,11 @@
                                     <th class="p-4 border-b">Promoción</th>
                                     <th class="p-4 border-b">Programa</th>
                                     <th class="p-4 border-b">¿Trabaja?</th>
-                                    <th class="p-4 border-b">¿Posgrado?</th>
+                                    <th class="p-4 border-b">¿Estudios Adicionales?</th>
                                 </tr>
                             </thead>
                             <tbody id="tablaResultados" class="text-sm">
-                                </tbody>
+                            </tbody>
                         </table>
                     </div>
                     
@@ -318,11 +381,10 @@
     </div>
 
     <script type="module">
-        // 1. Importar Firebase desde el CDN de Google
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
-      const firebaseConfig = {
+              const firebaseConfig = {
   apiKey: "AIzaSyAqCGSujfiyOl_qlkKAC2p9XkUi7RluOzc",
   authDomain: "egresados-normal.firebaseapp.com",
   projectId: "egresados-normal",
@@ -330,16 +392,17 @@
   messagingSenderId: "199144134933",
   appId: "1:199144134933:web:29f67fcdae81bcb183711c"
 };
-        // Inicializar Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Variables globales para UI
         let egresadosCache = [];
         let isAuthenticated = false;
         const ADMIN_PASS = "admin123";
 
-        // Exponer funciones al objeto window para que el HTML pueda llamarlas en los onclick
+        // Contadores para campos dinámicos
+        let studyCount = 1;
+        let aporteCount = 1;
+
         window.requestTabSwitch = function(tab) {
             if (tab === 'data' && !isAuthenticated) {
                 document.getElementById('passwordModal').classList.remove('hidden');
@@ -390,6 +453,8 @@
         window.closeSuccessModal = function() {
             document.getElementById('successModal').classList.add('hidden');
             document.getElementById('successModal').classList.remove('flex');
+            // Reiniciar la vista al aceptar para limpiar los form dinamicos
+            setTimeout(() => location.reload(), 300);
         };
 
         window.toggleWorkSection = function(show) {
@@ -418,6 +483,7 @@
 
         window.toggleOtherField = function(selectElement, inputId) {
             const input = document.getElementById(inputId);
+            if (!input) return;
             if (selectElement.value === 'Otro') {
                 input.classList.remove('hidden');
                 input.required = true;
@@ -428,9 +494,66 @@
             }
         };
 
-        // --- LÓGICA DE FIREBASE ---
+        // Función para agregar múltiples estudios/carreras
+        window.addStudy = function() {
+            studyCount++;
+            const container = document.getElementById('studiesContainer');
+            const html = `
+                <div class="study-item grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 pb-6 border-b border-gray-300">
+                    <div class="col-span-2 md:col-span-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Tipo de Programa *</label>
+                        <select name="tipo_programa_${studyCount}" onchange="toggleOtherField(this, 'otro_tipo_programa_text_${studyCount}')" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white" required>
+                            <option value="" disabled selected>Seleccione...</option>
+                            <option value="Pregrado">Profesional / Pregrado</option>
+                            <option value="Tecnologia">Tecnología</option>
+                            <option value="Especializacion">Especialización</option>
+                            <option value="Maestria">Maestría</option>
+                            <option value="Doctorado">Doctorado</option>
+                            <option value="Otro">Otro (Especifique)</option>
+                        </select>
+                        <input type="text" id="otro_tipo_programa_text_${studyCount}" name="otro_tipo_programa_text_${studyCount}" class="hidden mt-2 w-full px-4 py-2 border border-brand-green bg-green-50 rounded-lg">
+                    </div>
+                    <div class="col-span-2 md:col-span-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nombre de la Carrera/Programa *</label>
+                        <input type="text" name="nombre_programa_${studyCount}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green" required>
+                    </div>
+                    <div class="col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Universidad o Institución *</label>
+                        <input type="text" name="universidad_${studyCount}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green" required>
+                    </div>
+                    <div class="col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Ciudad y País *</label>
+                        <input type="text" name="lugar_estudio_${studyCount}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-green" required>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+        };
 
-        // GUARDAR EN FIRESTORE
+        // Función para agregar múltiples experiencias de aportes
+        window.addAporte = function() {
+            aporteCount++;
+            const container = document.getElementById('aportesContainer');
+            const html = `
+                <div class="aporte-item grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 pb-6 border-b border-gray-300">
+                    <div class="col-span-2 md:col-span-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Año</label>
+                        <input type="number" min="1950" max="2030" name="aporte_anio_${aporteCount}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue">
+                    </div>
+                    <div class="col-span-2 md:col-span-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Institución / Donde labora</label>
+                        <input type="text" name="aporte_institucion_${aporteCount}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue">
+                    </div>
+                    <div class="col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Propuesta Pedagógica / Aportes</label>
+                        <textarea name="aporte_propuesta_${aporteCount}" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue outline-none transition"></textarea>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+        };
+
+
         window.handleSubmit = async function(e) {
             e.preventDefault();
             const btn = e.target.querySelector('button[type="submit"]');
@@ -440,10 +563,9 @@
 
             const formData = new FormData(e.target);
             const dataObj = Object.fromEntries(formData.entries());
-            dataObj.fecha_registro = serverTimestamp(); // Marca de tiempo de Firebase
+            dataObj.fecha_registro = serverTimestamp(); 
 
             try {
-                // Guardar en la colección "egresados"
                 await addDoc(collection(db, "egresados"), dataObj);
                 
                 document.getElementById('successModal').classList.remove('hidden');
@@ -461,7 +583,6 @@
             }
         };
 
-        // LEER DE FIRESTORE
         async function cargarDatosDeFirestore() {
             const tbody = document.getElementById('tablaResultados');
             const emptyState = document.getElementById('emptyState');
@@ -504,18 +625,31 @@
             }
         }
 
-        // EXPORTAR A EXCEL (Usando los datos cacheados de Firestore)
         window.exportarExcelDB = function() {
             if (egresadosCache.length === 0) {
                 alert("No hay registros descargados para exportar.");
                 return;
             }
+            // Agregado el mapeo básico de las nuevas columnas estáticas de Información Personal para Excel
             const datosParaExcel = egresadosCache.map(e => ({
-                "Nombre Completo": e.nombre || '', "Identificación": e.identificacion || '', "Teléfono": e.telefono || '', "Email": e.email || '',
-                "Municipio": e.municipio || '', "Estrato": e.estrato_actual || '', "Promoción": e.anio_grado || '', "Programa": e.programa || '',
-                "¿Trabaja?": e.trabaja === 'si' ? 'Sí' : 'No', "Empresa": e.empresa || 'N/A', "Cargo": e.cargo || 'N/A', 
-                "¿Posgrado?": e.posgrado === 'si' ? 'Sí' : 'No', "Nombre Posgrado": e.nombre_programa || 'N/A',
-                "Formación Adecuada": e.formacion_adecuada || '', "Desea Participar": e.participar === 'si' ? 'Sí' : 'No',
+                "Nombre Completo": e.nombre || '', 
+                "Identificación": e.identificacion || '',
+                "Sexo": e.sexo || '',
+                "Lugar Nacimiento": e.lugar_nacimiento || '',
+                "Fecha Nacimiento": e.fecha_nacimiento || '',
+                "Teléfono": e.telefono || '', 
+                "Email": e.email || '',
+                "Dirección Actual": e.direccion_residencia || '',
+                "Municipio": e.municipio || '', 
+                "Estrato": e.estrato_actual || '', 
+                "Promoción": e.anio_grado || '', 
+                "Programa": e.programa || '',
+                "¿Trabaja?": e.trabaja === 'si' ? 'Sí' : 'No', 
+                "Empresa": e.empresa || 'N/A', 
+                "Cargo": e.cargo || 'N/A', 
+                "¿Estudios Adic?": e.posgrado === 'si' ? 'Sí' : 'No', 
+                "Formación Adecuada": e.formacion_adecuada || '', 
+                "Desea Participar": e.participar === 'si' ? 'Sí' : 'No',
                 "Comentarios": e.comentarios || ''
             }));
             const worksheet = XLSX.utils.json_to_sheet(datosParaExcel);
@@ -524,7 +658,6 @@
             XLSX.writeFile(workbook, "Egresados_Normal_Superior_DB.xlsx");
         };
 
-        // Permite presionar Enter para la contraseña
         document.getElementById('adminPasswordInput')?.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') window.verifyPassword();
         });
