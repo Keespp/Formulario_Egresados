@@ -600,7 +600,7 @@
 
                 egresadosCache.forEach((egresado) => {
                     const tr = document.createElement('tr');
-                    tr.className = "border-b hover:bg-gray-50";
+                    tr.className = "border-b hover:bg-gray-50 transition";
                     tr.innerHTML = `
                         <td class="p-4 font-medium">${egresado.nombre || '-'}</td>
                         <td class="p-4 text-gray-600">${egresado.identificacion || '-'}</td>
@@ -618,7 +618,7 @@
             }
         }
 
-       // EXPORTAR A EXCEL (Optimizada para campos dinámicos)
+       // EXPORTAR A EXCEL (Optimizada para campos dinámicos y formatos)
         window.exportarExcelDB = function() {
             if (egresadosCache.length === 0) {
                 alert("No hay registros descargados para exportar.");
@@ -646,7 +646,7 @@
 
             // 2. Construir la estructura para el Excel fila por fila
             const datosParaExcel = egresadosCache.map(e => {
-                // Información Estática (Personal y Laboral)
+                // Información Estática (Personal y Laboral), quitando Rango Salarial y Estratos
                 const row = {
                     "Nombre Completo": e.nombre || '', 
                     "Identificación": e.identificacion || '',
@@ -666,7 +666,6 @@
                     "Cargo": e.cargo || '', 
                     "Ciudad Trabajo": e.ciudad_trabajo || '',
                     "Tipo Vinculación": e.vinculacion === 'Otro' ? e.otra_vinculacion_text : (e.vinculacion || ''),
-                    "Rango Salarial": e.salario || '',
                     "¿Hizo Estudios Adicionales?": e.posgrado === 'si' ? 'Sí' : 'No'
                 };
 
@@ -696,8 +695,23 @@
                 return row;
             });
 
-            // 3. Generar y descargar el archivo
+            // 3. Generar el archivo Excel
             const worksheet = XLSX.utils.json_to_sheet(datosParaExcel);
+            
+            // 4. Mejorar el formato visual del Excel
+            if(worksheet['!ref']) {
+                // Añadir AutoFiltro nativo en el encabezado
+                worksheet['!autofilter'] = { ref: worksheet['!ref'] };
+                
+                // Ajustar el ancho de las columnas a 22 caracteres aprox, para que sea legible al abrir
+                const numeroColumnas = Object.keys(datosParaExcel[0]).length;
+                const configAnchos = [];
+                for (let i = 0; i < numeroColumnas; i++) {
+                    configAnchos.push({ wch: 22 });
+                }
+                worksheet['!cols'] = configAnchos;
+            }
+
             const workbook = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(workbook, worksheet, "Egresados_Nube");
             XLSX.writeFile(workbook, "Egresados_Normal_Superior_DB.xlsx");
